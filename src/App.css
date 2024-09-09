@@ -1,0 +1,88 @@
+.myBackground{
+  width:100vw;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(205,0,118);
+  background: linear-gradient(137deg, rgb(18, 11, 8)0%, rgb(166, 165, 171) 68%); 
+}
+
+.whiteBox{
+  background-color: white;
+  padding: 20px; 
+  min-width: 300px;
+  height: 70%;
+  width: 25%;
+  border: 1px solid #333;
+}
+
+.itemBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+}
+
+.title{
+  font-size: 30px;
+  color: #333;
+}
+
+.myForm, 
+.myButton{
+  width: 100%;
+}
+
+.myButton{
+  background: rgb(66, 8, 160) !important;
+}
+
+/* CarouselCustom.css */
+.carousel-indicators {
+  bottom: 15px !important; /* Adjust the value to move the indicators upward */
+}
+
+.view_more {
+  border-bottom-right-radius: 40px;
+  border-top-left-radius: 40px;
+  bottom: 7%;
+  left: 70%;
+}
+
+.btn-subscribe {
+  border-bottom-right-radius: 40px;
+  border-top-left-radius: 40px;
+}
+
+.view_more p {
+  margin: 0;
+  padding: 10px;
+  color: #ffff;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .view_more {
+    bottom: 7%;
+    left: 40%;
+  }
+}
+
+
+.line-must-read{
+  border-top: 1px solid #0000004D;
+  border-bottom: 1px solid #0000004D;
+}
+
+
+.common-bg {
+  background-color: #F5F4F4;
+}
+
+.footer-links{
+  text-decoration: none;
+  color: #333;
+}
