@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoutes';
 import PasswordResetRequest from './components/PasswordResetRequest';
 import PasswordReset from './components/PasswordReset';
 import DesignerRegistrationForm from './pages/DesignerRegistrationForm';
+import Gallery from './pages/Gallery';
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
         <Route path="/request/password_reset" element={<PasswordResetRequest />} />
         <Route path="/password-reset/:token" element={<PasswordReset />} />
           <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery/>} />     
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/apply-designer" element={<DesignerRegistrationForm/>} />

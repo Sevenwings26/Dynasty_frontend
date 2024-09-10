@@ -56,7 +56,7 @@ const Home = () => {
           </div>
           <div className="md:w-2/5 border-red-50">
             <Link to="/about">
-              <img src={wedding} alt="" />
+              <img src={wedding} alt="Arcade Bridal" />
             </Link>
           </div>
           <div className="hidden md:block md:w-3/5 px-10">

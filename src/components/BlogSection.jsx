@@ -71,7 +71,8 @@ const BlogSection = () => {
                 <div className="flex flex-col items-center mb-10 group relative shadow-lg text-white rounded-lg p-4 overflow-hidden cursor-pointer">
                   
                 <img
-                    src={blog.image.startsWith("https") ? blog.image : `${baseUrl}${blog.image}`}
+                    // src={blog.image.startsWith("https") ? blog.image : {blog.image}}
+                    src={blog.image}
                     alt={`Image${index + 1}`}
                     className="w-full object-cover rounded-t-lg"
                   />

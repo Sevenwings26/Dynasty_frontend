@@ -47,7 +47,7 @@ const Footer = () => {
           </div>
           <div className="w-full md:w-2/6 mt-6 md:mt-0 flex flex-col md:flex-row md:justify-between text-center md:text-left">
             <div className="md:mb-0">
-              <Link to="" className="footer-links">About Us</Link>
+              <Link to="/about" className="footer-links">About Us</Link>
               <br />
               <Link to="" className="footer-links">Contact</Link>
               <br />
@@ -56,7 +56,7 @@ const Footer = () => {
               <Link to="" className="footer-links">Designers</Link>
             </div>
             <div>
-              <Link to="" className="footer-links">Designer Application</Link>
+              <Link to="/apply-designer" className="footer-links">Designer Application</Link>
               <br />
               <Link to="" className="footer-links">Gallery</Link>
               <br />
