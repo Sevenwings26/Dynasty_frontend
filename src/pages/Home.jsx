@@ -100,7 +100,7 @@ const Home = () => {
         <div className="border-t border-b border-gray-600 mt-2 mb-2">
           <p className="font-semibold text-center mt-2">Must Read</p>
         </div>
-        <div className="w-full md:container m-auto py-2 px-6">
+        <div className="w-full md:container m-auto">
           <div className="">
             <GalleryView />
           </div>

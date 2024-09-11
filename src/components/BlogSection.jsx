@@ -68,23 +68,22 @@ const BlogSection = () => {
           {Array.isArray(blogs) ? (
             blogs.map((blog, index) => (
               <SwiperSlide key={index}>
-                <div className="flex flex-col items-center mb-10 group relative shadow-lg text-white rounded-lg p-4 overflow-hidden cursor-pointer">
-                  
+                <div className="w-full flex flex-col items-center mb-1 group relative shadow-lg text-white rounded-lg p-2 overflow-hidden cursor-pointer">                  
                 <img
-                    // src={blog.image.startsWith("https") ? blog.image : {blog.image}}
-                    src={blog.image}
+                    src={blog.image.startsWith("https") ? blog.image : blog.image}
+                    width="500px"
                     alt={`Image${index + 1}`}
                     className="w-full object-cover rounded-t-lg"
                   />
                   
-                  <div className="absolute bottom-3 mt-0 w-11/12 bg-black p-3 rounded-b-lg ">
+                  {/* <div className="absolute bottom-3 mt-0 w-11/12 bg-black p-3 rounded-b-lg ">
                     <h2 className="text-2xl font-semibold text-white text-center">
                       {blog.title}
                     </h2>
                     <p className="text-blue-500 text-center">
                       {blog.description}
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </SwiperSlide>
             ))

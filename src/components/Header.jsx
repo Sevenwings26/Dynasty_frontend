@@ -21,7 +21,7 @@ function Header() {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-white drop-shadow">
+    <Navbar collapseOnSelect expand="lg" className="bg-white drop-shadow uppercase">
       <Container>
         <Navbar.Brand href="/">
             <img src={arcadedynasty} width={'140px'} alt="Arcade Dynasty" />

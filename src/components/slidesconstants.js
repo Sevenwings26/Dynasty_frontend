@@ -14,8 +14,6 @@ import {
   import carousel5 from "../assets/heroslides/carousel5.jpg";
   import carousel6 from "../assets/heroslides/carousel6.jpg";
   
-
-  // https://temitopedadastudios.pixieset.com/elamor/
   export const ServiceData = [
     {
       icon: RxCrop,
