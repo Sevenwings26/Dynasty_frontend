@@ -12,36 +12,40 @@ import DesignerRegistrationForm from "./pages/DesignerRegistrationForm";
 import Gallery from "./pages/Gallery";
 import MustRead from "./pages/MustRead";
 import Blog from "./pages/Blog";
+import G2024 from "./pages/galleries/G2024";
 
 
 function App() {
-  const location = useLocation();
+  // const location = useLocation();
 
-  // Condition to hide navbar on specific routes
-  const noNavbar =
-    location.pathname === "/register" ||
-    location.pathname === "/" ||
-    location.pathname.includes("password") ||
-    location.pathname === "/login";
+  // // Condition to hide navbar on specific routes
+  // const noNavbar =
+  //   location.pathname === "/register" ||
+  //   location.pathname === "/" ||
+  //   location.pathname.includes("password") ||
+  //   location.pathname === "/login";
 
   return (
     <>
       {/* { !noNavbar && <Navbar /> }  Conditionally render Navbar */}
       <Routes>
+        {/* Auth Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/request/password_reset" element={<PasswordResetRequest />} />
         <Route path="/password-reset/:token" element={<PasswordReset/>}/>
-
         <Route path="/about" element={<About />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/must-read" element={<MustRead />} />
+ 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
+          <Route path="/must-read" element={<MustRead />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/apply-designer" element={<DesignerRegistrationForm />} />
           <Route path="/blog" element={<Blog/>} />
+          <Route path="/gallery/g-2024" element={<G2024/>}/>
         </Route>
+
       </Routes>
     </>
   );

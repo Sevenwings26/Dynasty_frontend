@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 
 const Gallery = () => {
   const images = [
-    { title: '2024', image: g2024 },
-    { title: '2023', image: g2023 },
-    { title: '2022', image: g2022 },
-    { title: '2021', image: g2021 },
-    { title: '2020', image: g2020 },
-    { title: '2019', image: g2019 },
+    { title: '2024', image: g2024, link:"/gallery/g-2024" },
+    { title: '2023', image: g2023, link:"/gallery/g-2023" },
+    { title: '2022', image: g2022, link:"/gallery/g-2022" },
+    { title: '2021', image: g2021, link:"/gallery/g-2021" },
+    { title: '2020', image: g2020, link:"/gallery/g-2020" },
+    { title: '2019', image: g2019, link:"/gallery/g-2019" },
   ];
 
   return (
@@ -42,18 +42,20 @@ const Gallery = () => {
         <div className="w-full py-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {images.map((item, index) => (
-              <Link to="" key={index}>
-                <div
+              <Link to="" 
+              // to={item.link} 
+              key={index}>
+                <div key={index}
                   className="relative bg-cover m-auto bg-center w-44 h-44 md:w-72 md:h-72 rounded-full"
                   style={{
                     backgroundImage: `url(${item.image})`,
                   }}
                 >
-                  <h2 className="absolute bottom-0 left-0 w-full text-center bg-black bg-opacity-50 text-white text-5xl rounded-b-full">
-                    {item.title}
+                  <h2 className="absolute bottom-0 left-0 w-full text-center bg-black bg-opacity-50 text-white text-1xl md:text-5xl rounded-b-full">
+                     {item.title}
                   </h2>
                 </div>
-              </Link>
+               </Link> 
             ))}
           </div>
         </div>

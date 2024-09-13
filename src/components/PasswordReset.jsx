@@ -1,101 +1,14 @@
-// import '../App.css'
-// import {React, useState} from 'react'
-// import { Box } from '@mui/material'
-// import MyTextField from './forms/MyTextField'
-// import MyPassField from './forms/MyPassField'
-// import MyButton from './forms/MyButton'
-// import {useParams } from 'react-router-dom'
-// import {useForm} from 'react-hook-form'
-// import AxiosInstance from '../api/AxiosInstance'
-// import { useNavigate } from 'react-router-dom'
-// import MyMessage from './Message'
-
-// const PasswordReset = () =>{
-//     const navigate = useNavigate()
-//     const {handleSubmit, control} = useForm()
-//     const {token} = useParams()
-//     console.log(token)
-//     const [ShowMessage, setShowMessage] = useState(false)
-
-
-//     const submission = (data) => {
-//         AxiosInstance.post(`api/password_reset/confirm/`,{
-//             password: data.password, 
-//             token: token,
-//         })
-
-//         .then((response) => {
-//             setShowMessage(true)
-//             setTimeout(() =>{
-//                 navigate('/')
-//             }, 6000 )
-//         })
-      
-//     }
-//     return(
-//         <div className={"myBackground"}> 
-
-//         {ShowMessage ? <MyMessage text={"Your password reset was successfull, you will be directed to the login page in a second"} color={'#69C9AB'}/> : null}
-//         <form onSubmit={handleSubmit(submission)}>
-
-        
-
-//         <Box className={"whiteBox"}>
-
-//             <Box className={"itemBox"}>
-//                 <Box className={"title"}> Reset password </Box>
-//             </Box>
-
-//             <Box className={"itemBox"}>
-//                 <MyPassField
-//                         label={"Password"}
-//                         name ={"password"}
-//                         control={control}
-//                         />
-//             </Box>
-
-//             <Box className={"itemBox"}>
-//                 <MyPassField
-//                         label={"Confirm password"}
-//                         name ={"password2"}
-//                         control={control}
-//                         />
-//             </Box>
-
-//             <Box className={"itemBox"}>
-//                 <MyButton 
-//                     label={"Reset password"}
-//                     type={"submit"}
-//                 />
-//             </Box>
-
-//             <Box className={"itemBox"} sx={{flexDirection:'column'}}>
-             
-//             </Box>
-
-
-//         </Box>
-
-//     </form>
-        
-//     </div>
-//     )
-
-// }
-
-// export default PasswordReset
-
-
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import AxiosInstance from "../api/AxiosInstance";
 import "../App.css";
+import arcadedynasty from "../assets/logo/arcadedynasty.png";
 
 const PasswordReset = () => {
   const navigate = useNavigate();
-  const { handleSubmit, register, watch } = useForm();
+  const { handleSubmit, register, watch, formState: { errors } } = useForm();
   const { token } = useParams();
   const [showMessage, setShowMessage] = useState(false);
 
@@ -115,7 +28,7 @@ const PasswordReset = () => {
       password: data.password,
       token: token,
     })
-      .then((response) => {
+      .then(() => {
         setShowMessage(true);
         Swal.fire({
           icon: "success",
@@ -125,7 +38,7 @@ const PasswordReset = () => {
           confirmButtonColor: "#34D399",
         }).then(() => navigate("/login"));
       })
-      .catch((error) => {
+      .catch(() => {
         Swal.fire({
           icon: "error",
           title: "Password Reset Failed",
@@ -137,49 +50,70 @@ const PasswordReset = () => {
   };
 
   return (
-    <div className="myBackground">
-      <div className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-center text-2xl font-bold mb-6">Reset Password</h2>
-
-        <form onSubmit={handleSubmit(submission)}>
-          {/* Password Input */}
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              {...register("password", { required: "Password is required" })}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Enter new password"
-            />
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="w-full bg-white rounded-lg shadow-lg md:max-w-md">
+        <div className="p-3 space-y-4 md:space-y-6">
+          <div className="flex flex-col items-center mb-6">
+            <img src={arcadedynasty} width={"120px"} alt="Arcade Dynasty" />
           </div>
+          <h1 className="text-xl font-bold text-gray-900 text-center mb-6">
+            Reset Password
+          </h1>
+          {showMessage && (
+            <div className="bg-green-100 border border-green-400 text-green-700 p-3 rounded mb-4">
+              Your password has been reset successfully. You will be redirected to the login page.
+            </div>
+          )}
+          <form onSubmit={handleSubmit(submission)} className="space-y-4">
+            {/* Password Input */}
+            <div>
+              <label htmlFor="password" className="sr-only">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                {...register("password", { required: "Password is required" })}
+                className={`w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-gray-900 focus:ring-green-500 focus:border-green-500 ${
+                  errors.password ? "border-red-500" : ""
+                }`}
+                placeholder="Enter new password"
+              />
+              {errors.password && (
+                <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+              )}
+            </div>
 
-          {/* Confirm Password Input */}
-          <div className="mb-6">
-            <label htmlFor="password2" className="block text-gray-700 text-sm font-bold mb-2">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="password2"
-              {...register("password2", { required: "Please confirm your password" })}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Confirm new password"
-            />
-          </div>
+            {/* Confirm Password Input */}
+            <div>
+              <label htmlFor="password2" className="sr-only">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="password2"
+                {...register("password2", { required: "Please confirm your password" })}
+                className={`w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-gray-900 focus:ring-green-500 focus:border-green-500 ${
+                  errors.password2 ? "border-red-500" : ""
+                }`}
+                placeholder="Confirm new password"
+              />
+              {errors.password2 && (
+                <p className="text-red-500 text-xs mt-1">{errors.password2.message}</p>
+              )}
+            </div>
 
-          {/* Submit Button */}
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Reset Password
-            </button>
-          </div>
-        </form>
+            {/* Submit Button */}
+            <div className="flex items-center justify-center">
+              <button
+                type="submit"
+                className="w-full bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-red-900"
+              >
+                Reset Password
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

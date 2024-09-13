@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import AxiosInstance from "../api/AxiosInstance";
 import "../App.css";
+import arcadedynasty from "../assets/logo/arcadedynasty.png";
+
 
 const PasswordResetRequest = () => {
   const navigate = useNavigate();
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
   const [showMessage, setShowMessage] = useState(false);
 
   const submission = (data) => {
-    AxiosInstance.post("api/password_reset/", {
-      email: data.email,
-    })
-      .then((response) => {
+    AxiosInstance.post("api/password_reset/", { email: data.email })
+      .then(() => {
         setShowMessage(true);
         Swal.fire({
           icon: "info",
@@ -22,9 +26,9 @@ const PasswordResetRequest = () => {
           text: "If the email exists, you will receive instructions to reset your password.",
           confirmButtonText: "OK",
           confirmButtonColor: "#34D399",
-        }).then(() => navigate("/")); // Redirect to home or another page if needed
+        }).then(() => navigate("/"));
       })
-      .catch((error) => {
+      .catch(() => {
         Swal.fire({
           icon: "error",
           title: "Request Failed",
@@ -36,114 +40,55 @@ const PasswordResetRequest = () => {
   };
 
   return (
-    <div className="myBackground">
-      <div className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-center text-2xl font-bold mb-6">Request Password Reset</h2>
-
-        <form onSubmit={handleSubmit(submission)}>
-          {/* Email Input */}
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              {...register("email", { required: "Email is required" })}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Enter your email"
-            />
-          </div>
-
-          {/* Submit Button */}
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Request Password Reset
-            </button>
-          </div>
-        </form>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="w-full bg-white rounded-lg shadow-lg md:max-w-md">
+        <div className="p-3 space-y-4 md:space-y-6">
+          <Link to="/" className="flex flex-col items-center">
+            <img src={arcadedynasty} width={"120px"} alt="Arcade Dynasty" />
+          </Link>
+          <h1 className="text-xl font-bold text-gray-900 text-center mb-6">
+            Request Password Reset
+          </h1>
+          {showMessage && (
+            <div className="bg-green-100 border border-green-400 text-green-700 p-3 rounded mb-4">
+              If your email exists, you will receive an email with instructions
+              for resetting the password.
+            </div>
+          )}
+          <form onSubmit={handleSubmit(submission)} className="space-y-4">
+            <div>
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                {...register("email", { required: "Email is required" })}
+                className={`w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-gray-900 focus:ring-green-500 focus:border-green-500 ${
+                  errors.email ? "border-red-500" : ""
+                }`}
+                placeholder="Enter your email"
+              />
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+            <div className="flex items-center justify-center">
+              <button
+                type="submit"
+                // className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-green-500"
+                className="w-full bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-red-900"
+              >
+                Request Password Reset
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
 };
 
 export default PasswordResetRequest;
-
-
-
-// import '../App.css'
-// import {React, useState} from 'react'
-// import { Box } from '@mui/material'
-// import MyTextField from './forms/MyTextField'
-// import MyPassField from './forms/MyPassField'
-// import MyButton from './forms/MyButton'
-// import {Link} from 'react-router-dom'
-// import AxiosInstance from "../api/AxiosInstance";
-// import {useForm} from 'react-hook-form'
-// import { useNavigate } from 'react-router-dom'
-// import MyMessage from './Message'
-
-// const PasswordResetRequest = () =>{
-//     const navigate = useNavigate()
-//     const {handleSubmit, control} = useForm()
-
-//     const [ShowMessage, setShowMessage] = useState(false)
-
-
-//     const submission = (data) => {
-//         AxiosInstance.post(`api/password_reset/`,{
-//             email: data.email, 
-//         })
-
-//         .then((response) => {
-//             setShowMessage(true)
-//         })
-      
-//     }
-//     return(
-//         <div className={"myBackground"}> 
-
-//         {ShowMessage ? <MyMessage text={"If your email exists you have received an email with instructions for resetting the password"}  color={'#69C9AB'}/> : null}
-//         <form onSubmit={handleSubmit(submission)}>
-
-        
-
-//         <Box className={"whiteBox"}>
-
-//             <Box className={"itemBox"}>
-//                 <Box className={"title"}> Request password reset </Box>
-//             </Box>
-
-//             <Box className={"itemBox"}>
-//                 <MyTextField
-//                 label={"Email"}
-//                 name ={"email"}
-//                 control={control}
-//                 />
-//             </Box>
-
-//             <Box className={"itemBox"}>
-//                 <MyButton 
-//                     label={"Request password reset"}
-//                     type={"submit"}
-//                 />
-//             </Box>
-
-//             <Box className={"itemBox"} sx={{flexDirection:'column'}}>
-             
-//             </Box>
-
-
-//         </Box>
-
-//     </form>
-        
-//     </div>
-//     )
-
-// }
-
-// export default PasswordResetRequest
