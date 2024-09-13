@@ -123,7 +123,7 @@ const PasswordReset = () => {
           text: "You will be redirected to the login page shortly.",
           confirmButtonText: "OK",
           confirmButtonColor: "#34D399",
-        }).then(() => navigate("/"));
+        }).then(() => navigate("/login"));
       })
       .catch((error) => {
         Swal.fire({

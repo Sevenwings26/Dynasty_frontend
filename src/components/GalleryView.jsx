@@ -43,7 +43,7 @@ const GalleryView = () => {
           </Link>
         ))
       ) : (
-        <p>No images available</p>
+        <p className="">No images available</p>
       )}
     </div>
   );

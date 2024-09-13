@@ -31,21 +31,16 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route
-          path="/request/password_reset"
-          element={<PasswordResetRequest />}
-        />
-        <Route path="/password-reset/:token" element={<PasswordReset />} />
+        <Route path="/request/password_reset" element={<PasswordResetRequest />} />
+        <Route path="/password-reset/:token" element={<PasswordReset/>}/>
+
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/must-read" element={<MustRead />} />
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
-          <Route
-            path="/apply-designer"
-            element={<DesignerRegistrationForm />}
-          />
-        <Route path="/blog" element={<Blog/>} />
+          <Route path="/apply-designer" element={<DesignerRegistrationForm />} />
+          <Route path="/blog" element={<Blog/>} />
         </Route>
       </Routes>
     </>
