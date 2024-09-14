@@ -20,7 +20,7 @@ const GalleryView = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full md:flex-row md:flex-nowrap md:justify-start">
+    <div className="container flex flex-col items-center justify-center w-full md:flex-row md:flex-nowrap md:justify-start">
       {Array.isArray(shows) && shows.length > 0 ? (
         shows.map((show, index) => (
           <Link

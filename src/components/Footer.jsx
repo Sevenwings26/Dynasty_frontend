@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import arcadedynasty from '../assets/logo/arcadedynasty.png';
-import facebook from "../assets/socialicons/facebook.png";
-import instagram from "../assets/socialicons/instagram.png";
-import pinterest from "../assets/socialicons/pinterest.png";
-import twitter from "../assets/socialicons/twitter.png";
-import youtube from "../assets/socialicons/youtube.png";
+import arcadedynasty from "../assets/logo/arcadedynasty.png";
+// import facebook from "../assets/socialicons/facebook.png";
+// import instagram from "../assets/socialicons/instagram.png";
+// import pinterest from "../assets/socialicons/pinterest.png";
+// import twitter from "../assets/socialicons/twitter.png";
+// import youtube from "../assets/socialicons/youtube.png";
+import { FaXTwitter, FaFacebookF, FaPinterestP, FaYoutube, FaInstagram, FaWhatsapp } from "react-icons/fa6";
+
 
 const Footer = () => {
   return (
@@ -27,42 +29,104 @@ const Footer = () => {
                 ARCCADE DYNASTY.
               </p>
             </div>
-            <div className="social-icons w-full flex flex-wrap justify-center gap-6 md:gap-6">
-              <Link to="https://facebook.com">
-                <img src={facebook} alt="Facebook" />
+
+            <div className="social-icons w-full flex flex-wrap justify-center gap-3 md:gap-6 black" >
+              <Link
+                to="https://facebook.com"
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <FaFacebookF className="text-2xl"
+                color="#000000" />
               </Link>
-              <Link to="https://pinterest.com">
-                <img src={pinterest} alt="Pinterest" />
+              <Link
+                to="https://pinterest.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaPinterestP className="text-2xl" 
+                color="#000000"
+                />
               </Link>
-              <Link to="https://instagram.com">
-                <img src={instagram} alt="Instagram" />
+              <Link
+                to="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram className="text-2xl"
+                color="#000000"
+                />
               </Link>
-              <Link to="https://x.com">
-                <img src={twitter} alt="Twitter" />
+              <Link
+                to="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaXTwitter className="text-2xl" 
+                color="#000000"
+                />
               </Link>
-              <Link to="https://youtube.com">
-                <img src={youtube} alt="YouTube" />
+              <Link
+                to="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaYoutube className="text-2xl" 
+                color="#000000"
+                />
               </Link>
+              <Link
+                to="https://wa.me/2349025588836"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2"
+              >
+                <FaWhatsapp className="text-2xl" 
+                color="#000000"
+                />
+              </Link>
+            </div>
+            <div className="mx-auto md:mx-0 pt-2">
+                <a href="tel:+2349025588836" 
+                >
+                <p className="text-black">+234-9025588836</p>
+              </a>
             </div>
           </div>
-          <div className="w-full md:w-2/6 mt-6 md:mt-0 flex flex-col md:flex-row md:justify-between text-center md:text-left">
+          <div className="w-full md:w-2/6 md:mt-0 flex flex-col md:flex-row md:justify-between text-center md:text-left">
             <div className="md:mb-0">
-              <Link to="/about" className="footer-links">About Us</Link>
+              <Link to="/about" className="footer-links">
+                About Us
+              </Link>
               <br />
-              <Link to="" className="footer-links">Contact</Link>
+              <Link to="" className="footer-links">
+                Contact
+              </Link>
               <br />
-              <Link to="" className="footer-links">Sponsors</Link>
+              <Link to="" className="footer-links">
+                Sponsors
+              </Link>
               <br />
-              <Link to="" className="footer-links">Designers</Link>
+              <Link to="" className="footer-links">
+                Designers
+              </Link>
             </div>
             <div>
-              <Link to="/apply-designer" className="footer-links">Designer Application</Link>
+              <Link to="/apply-designer" className="footer-links">
+                Designer Application
+              </Link>
               <br />
-              <Link to="" className="footer-links">Gallery</Link>
+              <Link to="" className="footer-links">
+                Gallery
+              </Link>
               <br />
-              <Link to="" className="footer-links">Blog</Link>
+              <Link to="" className="footer-links">
+                Blog
+              </Link>
               <br />
-              <Link to="" className="footer-links">Buy Ticket</Link>
+              <Link to="" className="footer-links">
+                Buy Ticket
+              </Link>
             </div>
           </div>
         </div>
