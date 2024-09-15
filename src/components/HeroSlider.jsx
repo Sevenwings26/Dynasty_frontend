@@ -44,7 +44,7 @@ const HeroSlider = () => {
       >
         {ServiceData.map((item) => (
           <SwiperSlide key={item.title} className="flex justify-center py-6">
-            <div className="flex flex-col mb-10 group relative shadow-lg text-white rounded-xl px-1 w-full h-[250px] lg:h-[500px] lg:w-[100%] overflow-hidden cursor-pointer">
+            <div className="flex flex-col mb-10 group relative shadow-lg text-white rounded-xl px-1 w-full h-[350px] lg:h-[500px] lg:w-[100%] overflow-hidden cursor-pointer">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${item.backgroundImage})` }}

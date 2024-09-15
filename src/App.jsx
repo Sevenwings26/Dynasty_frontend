@@ -36,10 +36,10 @@ function App() {
         <Route path="/request/password_reset" element={<PasswordResetRequest />} />
         <Route path="/password-reset/:token" element={<PasswordReset/>}/>
         <Route path="/about" element={<About />} />
+        <Route path="/must-read" element={<MustRead />} />
  
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/must-read" element={<MustRead />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/apply-designer" element={<DesignerRegistrationForm />} />
           <Route path="/blog" element={<Blog/>} />

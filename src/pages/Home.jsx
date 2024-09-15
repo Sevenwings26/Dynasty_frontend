@@ -50,7 +50,7 @@ const Home = () => {
       <section className="container">
         <div className="m-auto mt-3 relative md:flex flex-row justify-between items-center md:py-8">
           <div className="py-3 text-center md:hidden">
-            <Link to="/about" className="bold">
+            <Link to="/about" className="bold no-underline text-black">
               About Us
             </Link>
           </div>
