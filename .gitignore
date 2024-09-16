@@ -1,5 +1,5 @@
-frontend/.env
-
+.env
+.gitignore
 # Logs
 logs
 *.log
