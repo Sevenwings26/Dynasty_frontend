@@ -14,9 +14,19 @@ function Header() {
       setIsLoggedIn(true);  // Set login status
 
       // Fetch user data from local storage or from a user endpoint
-      const user = JSON.parse(localStorage.getItem('User')); // Assuming user is stored after login
-      if (user) {
-        setUsername(user.username);  // Set the username from localStorage
+      const storedUsername = localStorage.getItem('Username'); // Fetch username from localStorage
+      if (storedUsername) {
+        setUsername(storedUsername);  // Set the username from localStorage
+      } else {
+        // Fetch user data from the backend
+        axiosInstance.get('/api/user/')
+          .then(response => {
+            setUsername(response.data.username);
+            localStorage.setItem('Username', response.data.username);  // Store username in localStorage
+          })
+          .catch(error => {
+            console.error('There was an error fetching the user data!', error);
+          });
       }
     } else {
       setIsLoggedIn(false);
@@ -25,7 +35,7 @@ function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem('Token');  // Clear the token from local storage
-    localStorage.removeItem('User');   // Clear the user data
+    localStorage.removeItem('Username');   // Clear the username
     setIsLoggedIn(false);
     setUsername(null);                 // Clear the username
     navigate('/login');
@@ -58,7 +68,7 @@ function Header() {
             </Link>
             {isLoggedIn ? (
               <>
-                <span className='nav-link m-2'>
+                <span className='nav-link m-2 font-bold text-red-500 animate-pulse'>
                   {username}  {/* Display the username */}
                 </span>
                 <span className='nav-link m-2 text-gray-800' onClick={handleLogout} style={{ cursor: 'pointer' }}>
@@ -83,3 +93,4 @@ function Header() {
 }
 
 export default Header;
+

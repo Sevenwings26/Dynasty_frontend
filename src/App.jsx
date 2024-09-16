@@ -10,6 +10,7 @@ import PasswordResetRequest from "./components/PasswordResetRequest";
 import PasswordReset from "./components/PasswordReset";
 import DesignerRegistrationForm from "./pages/DesignerRegistrationForm";
 import Gallery from "./pages/Gallery";
+import Designers from "./pages/Designers";
 import MustRead from "./pages/MustRead";
 import Blog from "./pages/Blog";
 import G2024 from "./pages/galleries/G2024";
@@ -41,6 +42,7 @@ function App() {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/designers" element={<Designers/>} />
           <Route path="/apply-designer" element={<DesignerRegistrationForm />} />
           <Route path="/blog" element={<Blog/>} />
           <Route path="/gallery/g-2024" element={<G2024/>}/>

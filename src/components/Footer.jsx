@@ -1,11 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import arcadedynasty from "../assets/logo/arcadedynasty.png";
-// import facebook from "../assets/socialicons/facebook.png";
-// import instagram from "../assets/socialicons/instagram.png";
-// import pinterest from "../assets/socialicons/pinterest.png";
-// import twitter from "../assets/socialicons/twitter.png";
-// import youtube from "../assets/socialicons/youtube.png";
 import { FaXTwitter, FaFacebookF, FaPinterestP, FaYoutube, FaInstagram, FaWhatsapp } from "react-icons/fa6";
 
 
@@ -116,11 +111,11 @@ const Footer = () => {
                 Designer Application
               </Link>
               <br />
-              <Link to="" className="footer-links">
+              <Link to="/gallery" className="footer-links">
                 Gallery
               </Link>
               <br />
-              <Link to="" className="footer-links">
+              <Link to="/blog" className="footer-links">
                 Blog
               </Link>
               <br />
