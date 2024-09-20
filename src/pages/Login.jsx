@@ -39,8 +39,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
-      <div className="px-6 py-8 mx-auto md:h-screen lg:py-0 myBackground">
+    <div className="min-h-screen w-full flex flex-col myBackground">
+      <div className="h-full w-full px-6 py-8 mx-auto md:h-screen lg:py-0 myBackground">
         <div className="w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-3 space-y-4 md:space-y-6">
             <Link to='/' className="flex flex-col items-center mb-6">

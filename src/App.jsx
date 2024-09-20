@@ -17,18 +17,8 @@ import G2024 from "./pages/galleries/G2024";
 
 
 function App() {
-  // const location = useLocation();
-
-  // // Condition to hide navbar on specific routes
-  // const noNavbar =
-  //   location.pathname === "/register" ||
-  //   location.pathname === "/" ||
-  //   location.pathname.includes("password") ||
-  //   location.pathname === "/login";
-
   return (
     <>
-      {/* { !noNavbar && <Navbar /> }  Conditionally render Navbar */}
       <Routes>
         {/* Auth Routes */}
         <Route path="/" element={<Home />} />
