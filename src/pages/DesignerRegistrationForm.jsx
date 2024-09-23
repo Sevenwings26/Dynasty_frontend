@@ -46,7 +46,7 @@ const DesignerRegistrationForm = () => {
       .then(response => {
         Swal.fire({
           title: 'Success!',
-          text: 'Application submitted successfully. Please do not re-apply.',
+          text: "Application submitted successfully. You would have received a confirmatory mail.\n Please do not re-apply.",
           icon: 'success',
           confirmButtonText: 'OK'
         }).then(() => {
