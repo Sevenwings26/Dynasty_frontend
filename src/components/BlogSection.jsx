@@ -10,8 +10,9 @@ const BlogSection = () => {
   const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const baseUrl = import.meta.env.VITE_API_URL;
-  const blogApi = `${baseUrl}api/blogs`;
+  // const baseUrl = import.meta.env.VITE_API_URL;
+  // const blogApi = `${baseUrl}api/blogs`;
+  const blogApi = 'https://dynasty-backend.onrender.com/api/blogs';
 
   useEffect(() => {
     axios
