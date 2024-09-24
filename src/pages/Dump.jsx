@@ -55,6 +55,43 @@ function App() {
 
 export default App;
 
+// masonry - tailwind ---------
+
+// import React from 'react';
+
+// // import images 
+
+// import POL1 from "../assets/year2024/POL1.jpg";
+// import POL2 from "../assets/year2024/POL2.jpg";
+// import POL3 from "../assets/year2024/POL3.jpg";
+// import POL4 from "../assets/year2024/POL4.jpg";
+// import POL5 from "../assets/year2024/POL5.jpg";
+// import POL6 from "../assets/year2024/POL6.jpg";
+// import POL7 from "../assets/year2024/POL7.jpg";
+// import POL8 from "../assets/year2024/POL8.jpg";
+// import POL9 from "../assets/year2024/POL9.jpg";
+
+
+// const MasonryLayout = () => {
+//   const images = [
+//   POL1, POL2, POL3,POL4, POL5, POL6,POL7, POL8, POL9, POL2, POL3
+// ];
+
+//   return (
+//     // <div className='bg-gray-200 break-inside-avoid'>
+//     <div className='columns-1 sm:columns-2 lg:columns-3 py-10 md:py-20 gap-4'>
+//       {images.map((image, index) => (
+//           <div key={index} className='mb-4 break-inside-avoid'>
+//             <img src={image} alt="" className='w-full object-cover rounded-lg' />
+//           </div>
+//         ))}        
+//       </div>
+//     // </div>
+//   );
+// };
+
+// export default MasonryLayout;
+
 
 // // import React, { useState } from "react";
 // // import Swal from "sweetalert2";

@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import MasonryLayout24 from "../../components/MasonryLayout24";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const G2024 = () => {
   return (
-    <div className='text-3xl'>G2024</div>
-  )
-}
+    <div>
+      <Header />
+      <h2 className="text-center m-4 uppercase">2024 event images</h2>
+      <div className=" bg-gray-100 ">
+        <MasonryLayout24 />
+      </div>
+      <Footer />
+    </div>
+  );
+};
 
-export default G2024
+export default G2024;

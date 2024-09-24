@@ -14,6 +14,7 @@ import Designers from "./pages/Designers";
 import MustRead from "./pages/MustRead";
 import Blog from "./pages/Blog";
 import G2024 from "./pages/galleries/G2024";
+import G2023 from "./pages/galleries/G2023";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/apply-designer" element={<DesignerRegistrationForm />} />
           <Route path="/blog" element={<Blog/>} />
           <Route path="/gallery/g-2024" element={<G2024/>}/>
+          <Route path="/gallery/g-2023" element={<G2023/>}/>
         </Route>
 
       </Routes>

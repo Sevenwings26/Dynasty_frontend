@@ -42,7 +42,7 @@ const Gallery = () => {
         <div className="w-full py-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {images.map((item, index) => (
-              <Link to="" 
+              <Link to={item.link} 
               // to={item.link} 
               key={index}>
                 <div key={index}
