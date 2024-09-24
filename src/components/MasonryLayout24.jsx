@@ -37,7 +37,7 @@ const MasonryLayout24 = () => {
   };
 
   return (
-    <div className='w-11/12 m-auto pt-2 pb-2'>
+    <div className='md:w-11/12 m-auto pt-2 pb-2'>
       <ResponsiveMasonry
         columnsCountBreakPoints={{ 350: 2, 750: 2, 900: 3 }}
       >
