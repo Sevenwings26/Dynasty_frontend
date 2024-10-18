@@ -32,13 +32,19 @@ function App() {
  
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
+          {/* <Route path="/gallery" element={<Gallery />} />
+          <Route path="/designers" element={<Designers/>} />
+          <Route path="/apply-designer" element={<DesignerRegistrationForm />} />
+          <Route path="/blog" element={<Blog/>} />
+          <Route path="/gallery/g-2024" element={<G2024/>}/>
+          <Route path="/gallery/g-2023" element={<G2023/>}/> */}
+        </Route>
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/designers" element={<Designers/>} />
           <Route path="/apply-designer" element={<DesignerRegistrationForm />} />
           <Route path="/blog" element={<Blog/>} />
           <Route path="/gallery/g-2024" element={<G2024/>}/>
           <Route path="/gallery/g-2023" element={<G2023/>}/>
-        </Route>
 
       </Routes>
     </>

@@ -7,7 +7,7 @@ const G2024 = () => {
   return (
     <div>
       <Header />
-      <h2 className="text-center m-4 uppercase">2024 event images</h2>
+      <h2 className="text-center m-4 uppercase">Arcade Fashion/Events</h2>
       <div className=" bg-gray-100 ">
         <MasonryLayout24 />
       </div>

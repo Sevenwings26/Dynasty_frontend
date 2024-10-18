@@ -9,6 +9,7 @@ import GalleryView from "../components/GalleryView";
 import Footer from "../components/Footer";
 import Subscribe from "../components/Subscribe";
 import BlogSection from "../components/BlogSection";
+import HeroSliderSmall from "../components/HeroSliderSmall";
 
 const Home = () => {
   return (
@@ -18,8 +19,12 @@ const Home = () => {
         <Header />
       </section>
       {/* hero section */}
-      <section>
+      <section className="hidden md:block">
         <HeroSlider />
+      </section>
+      {/* hero section - small screen */}
+      <section className="md:hidden">
+        <HeroSliderSmall/>
       </section>
       {/* {call for designers} */}
       <section>

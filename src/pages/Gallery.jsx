@@ -3,19 +3,24 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import g2019 from "../assets/images/gallery/g2019.jpg";
 import g2020 from "../assets/images/gallery/g2020.jpg";
-import g2021 from "../assets/images/gallery/g2021.jpg";
+// import g2021 from "../assets/images/gallery/g2021.jpg";
 import g2022 from "../assets/images/gallery/g2022.jpg";
-import g2023 from "../assets/images/gallery/g2023.jpg";
-import g2024 from "../assets/images/gallery/g2024.jpg";
+// import g2023 from "../assets/images/gallery/g2023.jpg";
+// import g2024 from "../assets/images/gallery/g2024.jpg";
+import bridal100 from "../assets/images/gallery/bridal100.jpg";
+import arcade44 from "../assets/images/gallery/arcade44.jpg";
+import urban1 from "../assets/images/gallery/urban1.jpg";
+import elAlmor from "../assets/images/gallery/elAlmor.jpg";
+
 import { Link } from "react-router-dom";
 
 const Gallery = () => {
   const images = [
-    { title: '2024', image: g2024, link:"/gallery/g-2024" },
-    { title: '2023', image: g2023, link:"/gallery/g-2023" },
+    { title: 'Arcade Fashion Weekend', image: arcade44, link:"/gallery/g-2024" },
+    { title: 'Bridal Fashion Show', image: bridal100, link:"/gallery/g-2023" },
     { title: '2022', image: g2022, link:"/gallery/g-2022" },
-    { title: '2021', image: g2021, link:"/gallery/g-2021" },
-    { title: '2020', image: g2020, link:"/gallery/g-2020" },
+    { title: 'Urban-Style Fashion Show', image: urban1, link:"/gallery/g-2021" },
+    { title: 'El-Almor', image: elAlmor, link:"/gallery/g-2020" },
     { title: '2019', image: g2019, link:"/gallery/g-2019" },
   ];
 
@@ -51,7 +56,7 @@ const Gallery = () => {
                     backgroundImage: `url(${item.image})`,
                   }}
                 >
-                  <h2 className="absolute bottom-0 left-0 w-full text-center bg-black bg-opacity-50 text-white text-1xl md:text-5xl rounded-b-full">
+                  <h2 className="absolute bottom-0 left-0 w-full text-center bg-black bg-opacity-50 text-white text-1xl md:text-2xl rounded-b-full">
                      {item.title}
                   </h2>
                 </div>

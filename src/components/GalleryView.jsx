@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const GalleryView = () => {
   const [shows, setShows] = useState([]);
   const baseUrl = import.meta.env.VITE_API_URL;
+
   const gallery = `${baseUrl}api/gallery`;
 
   useEffect(() => {
