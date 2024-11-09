@@ -1,10 +1,10 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import g2019 from "../assets/images/gallery/g2019.jpg";
-import g2020 from "../assets/images/gallery/g2020.jpg";
+// import g2019 from "../assets/images/gallery/g2019.jpg";
+// import g2020 from "../assets/images/gallery/g2020.jpg";
 // import g2021 from "../assets/images/gallery/g2021.jpg";
-import g2022 from "../assets/images/gallery/g2022.jpg";
+// import g2022 from "../assets/images/gallery/g2022.jpg";
 // import g2023 from "../assets/images/gallery/g2023.jpg";
 // import g2024 from "../assets/images/gallery/g2024.jpg";
 import bridal100 from "../assets/images/gallery/bridal100.jpg";
@@ -16,12 +16,12 @@ import { Link } from "react-router-dom";
 
 const Gallery = () => {
   const images = [
-    { title: 'Arcade Fashion Weekend', image: arcade44, link:"/gallery/g-2024" },
-    { title: 'Bridal Fashion Show', image: bridal100, link:"/gallery/g-2023" },
-    { title: '2022', image: g2022, link:"/gallery/g-2022" },
-    { title: 'Urban-Style Fashion Show', image: urban1, link:"/gallery/g-2021" },
-    { title: 'El-Almor', image: elAlmor, link:"/gallery/g-2020" },
-    { title: '2019', image: g2019, link:"/gallery/g-2019" },
+    { title: 'Arcade Fashion Weekend', image: arcade44, link:"/gallery/arcade-fashion-weekend" },
+    { title: 'Bridal Fashion Show', image: bridal100, link:"/gallery/bridal-fashion-week" },
+    { title: 'Urban-Style Fashion Show', image: urban1, link:"/gallery/urban-style-fashion" },
+    { title: 'El-Almor', image: elAlmor, link:"/gallery/el-almor" },
+    // { title: '2022', image: g2022, link:"/gallery/g-2022" },
+    // { title: '2019', image: g2019, link:"/gallery/g-2019" },
   ];
 
   return (

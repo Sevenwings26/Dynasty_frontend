@@ -15,6 +15,10 @@ import MustRead from "./pages/MustRead";
 import Blog from "./pages/Blog";
 import G2024 from "./pages/galleries/G2024";
 import G2023 from "./pages/galleries/G2023";
+import Arcade from "./pages/galleries/Arcade";
+import Bridal from "./pages/galleries/Bridal";
+import Urban from "./pages/galleries/Urban";
+import Elalmor from "./pages/galleries/Elalmor";
 
 
 function App() {
@@ -43,8 +47,11 @@ function App() {
           <Route path="/designers" element={<Designers/>} />
           <Route path="/apply-designer" element={<DesignerRegistrationForm />} />
           <Route path="/blog" element={<Blog/>} />
-          <Route path="/gallery/g-2024" element={<G2024/>}/>
-          <Route path="/gallery/g-2023" element={<G2023/>}/>
+          {/* <Route path="/gallery/arcade-fashion-weekend" element={<G2024/>}/> */}
+          <Route path="/gallery/arcade-fashion-weekend" element={<Arcade/>}/>
+          <Route path="/gallery/bridal-fashion-week" element={<Bridal/>}/>
+          <Route path="/gallery/urban-style-fashion" element={<Urban/>}/>
+          <Route path="/gallery/el-almor" element={<Elalmor/>}/>
 
       </Routes>
     </>
