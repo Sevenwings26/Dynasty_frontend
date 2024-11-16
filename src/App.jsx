@@ -13,8 +13,6 @@ import Gallery from "./pages/Gallery";
 import Designers from "./pages/Designers";
 import MustRead from "./pages/MustRead";
 import Blog from "./pages/Blog";
-import G2024 from "./pages/galleries/G2024";
-import G2023 from "./pages/galleries/G2023";
 import Arcade from "./pages/galleries/Arcade";
 import Bridal from "./pages/galleries/Bridal";
 import Urban from "./pages/galleries/Urban";
