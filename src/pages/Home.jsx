@@ -41,7 +41,7 @@ const Home = () => {
               featuring both seasoned supermodels and emerging talents.
             </p>
             <div className="brand mt-2 rounded-xl w-full relative">
-              <Link to="/">
+              <Link to="/gallery/bridal-fashion-week">
                 <div className="absolute w-32 md:w-40 view_more text-center bg-black text-white p-2 hover:bg-gray-800 transition duration-300 no-underline">
                   <span className="animate-pulse uppercase">View More</span>
                 </div>

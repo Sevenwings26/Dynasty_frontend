@@ -1,7 +1,7 @@
+// const baseUrl = "https://dynasty-backend.onrender.com/"
 import axios from 'axios';
 
 const baseUrl = import.meta.env.VITE_API_URL;
-// const baseUrl = "https://dynasty-backend.onrender.com/"
 
 const AxiosInstance = axios.create({
     baseURL: baseUrl,
