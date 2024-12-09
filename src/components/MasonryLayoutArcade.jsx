@@ -50,7 +50,7 @@ const images = [
 ];
 
 
-const MasonryLayout24 = () => {
+const MasonryLayoutArcade = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Function to open modal with the selected image
@@ -111,5 +111,5 @@ const MasonryLayout24 = () => {
   );
 };
 
-export default MasonryLayout24;
+export default MasonryLayoutArcade;
 

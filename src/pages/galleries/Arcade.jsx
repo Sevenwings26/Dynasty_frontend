@@ -1,5 +1,5 @@
 import React from "react";
-import MasonryLayout24 from "../../components/MasonryLayout24";
+import MasonryLayoutArcade from "../../components/MasonryLayoutArcade";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -9,7 +9,7 @@ const Arcade = () => {
       <Header />
       <h2 className="text-center m-4 uppercase">Arcade Fashion/Events</h2>
       <div className=" bg-gray-100 ">
-        <MasonryLayout24 />
+        <MasonryLayoutArcade />
       </div>
       <Footer />
     </div>
