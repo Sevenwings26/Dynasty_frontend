@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 const GalleryView = () => {
   const [shows, setShows] = useState([]);
   const baseUrl = import.meta.env.VITE_API_URL;
+  // const baseUrl = "http://127.0.0.1:8000/";
 
   const gallery = `${baseUrl}api/gallery`;
+  console.log("Base URL:", baseUrl);
 
   useEffect(() => {
     axios
@@ -35,7 +37,18 @@ const GalleryView = () => {
                 src={show.image.startsWith("https") ? show.image : show.image}
                 alt={show.title}
                 className="w-full h-auto rounded-lg mx-auto"
-              />
+                />
+
+              <img
+                src={
+                  show.image.startsWith("http")
+                  ? show.image
+                  : `${baseUrl}${show.image}`
+                }
+                alt={show.title}
+                className="w-full h-auto rounded-lg mx-auto"
+                />
+
 
               <p className="absolute bottom-5 px-2 py-1 left-1/4 w-1/2 bg-gray-400 bg-opacity-35 transform -translate-x-1/2 text-black rounded text-left font-bold italic text-2xl">
                 {show.title}
@@ -44,7 +57,7 @@ const GalleryView = () => {
           </Link>
         ))
       ) : (
-        <p className="text-center">No images available</p>
+        <p className="text-center">No images</p>
       )}
     </div>
   );
