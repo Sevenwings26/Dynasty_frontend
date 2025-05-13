@@ -31,7 +31,8 @@ function App() {
         <Route path="/password-reset/:token" element={<PasswordReset/>}/>
         <Route path="/about" element={<About />} />
         <Route path="/must-read" element={<MustRead />} />
-          <Route path="/blog" element={<Blog/>} />
+        <Route path="/blog" element={<Blog/>} />
+        <Route path="/gallery/arcade-fashion-weekend" element={<Arcade/>}/>
  
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
@@ -39,7 +40,6 @@ function App() {
           <Route path="/designers" element={<Designers/>} />
           <Route path="/apply-designer" element={<DesignerRegistrationForm />} />
           {/* <Route path="/gallery/arcade-fashion-weekend" element={<G2024/>}/> */}
-          <Route path="/gallery/arcade-fashion-weekend" element={<Arcade/>}/>
           <Route path="/gallery/bridal-fashion-week" element={<Bridal/>}/>
           <Route path="/gallery/urban-style-fashion" element={<Urban/>}/>
           <Route path="/gallery/el-almor" element={<Elalmor/>}/>

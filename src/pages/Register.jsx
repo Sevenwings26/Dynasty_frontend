@@ -38,29 +38,53 @@ const Register = () => {
     resolver: yupResolver(schema),
   });
 
-  const submission = (data) => {
-    AxiosInstance.post(`register/`, {
+    const submission = (data) => {
+    AxiosInstance.post('register/', { // Ensure the path matches your Django URL
       username: data.username,
       email: data.email,
       password: data.password,
     })
-      .then(() => {
-        Swal.fire("Welcome!", "Registration successful!", "success");
-        navigate(`/login`);
-      })
-      .catch((error) => {
-        if (error.response && error.response.status === 400) {
-          // Check if the error response contains a specific message for the email
-          if (error.response.data.email) {
-            Swal.fire("Oops!", "Email address is already in use.", "error");
-          } else {
-            Swal.fire("Oops!", "Registration failed. Please try again.", "error");
-          }
+    .then((response) => {
+      console.log("Registration successful response:", response); // Log the entire response
+      Swal.fire("Welcome!", "Registration successful!", "success");
+      navigate('/login');
+    })
+    .catch((error) => {
+      console.error("Registration error:", error); // Log the entire error object
+      if (error.response && error.response.status === 400) {
+        if (error.response.data.email) {
+          Swal.fire("Oops!", "Email address is already in use.", "error");
         } else {
-          Swal.fire("Oops!", "An unexpected error occurred. Please try again.", "error");
+          Swal.fire("Oops!", "Registration failed. Please try again.", "error");
         }
-      });
+      } else {
+        Swal.fire("Oops!", "An unexpected error occurred. Please try again.", "error");
+      }
+    });
   };
+  // const submission = (data) => {
+  //   AxiosInstance.post(`register/`, {
+  //     username: data.username,
+  //     email: data.email,
+  //     password: data.password,
+  //   })
+  //     .then(() => {
+  //       Swal.fire("Welcome!", "Registration successful!", "success");
+  //       navigate(`/login`);
+  //     })
+  //     .catch((error) => {
+  //       if (error.response && error.response.status === 400) {
+  //         // Check if the error response contains a specific message for the email
+  //         if (error.response.data.email) {
+  //           Swal.fire("Oops!", "Email address is already in use.", "error");
+  //         } else {
+  //           Swal.fire("Oops!", "Registration failed. Please try again.", "error");
+  //         }
+  //       } else {
+  //         Swal.fire("Oops!", "An unexpected error occurred. Please try again.", "error");
+  //       }
+  //     });
+  // };
 
   return (
     <div className="min-h-screen w-full flex flex-col myBackground">
