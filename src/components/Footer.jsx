@@ -128,7 +128,7 @@ const Footer = () => {
       </div>
       <div className="py-3 border-t-2 w-full flex flex-col items-center">
         <p className="text-black text-sm">
-          &copy; 2023 Arcade Media. All rights reserved.
+          &copy; 2025 Arcade Media. All rights reserved.
         </p>
       </div>
     </div>
