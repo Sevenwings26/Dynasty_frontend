@@ -1,12 +1,17 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { ServiceData } from "./slidesconstants";
+import { Link } from "react-router-dom";
 
 
 const HeroSliderSmall = () => {
   return (
-    <div className="container mx-auto mt-3 mb-3">
-      <div className="text-2xl semibold"><p>Welcome to Arcade Dynasty</p></div>
+    <div className="w-full items-center mx-auto">
+      <div className="w-full bg-black justify-center text-center text-2xl semibold">
+        <Link to={"/designers"} className="text-white ">
+                  <p className="m-1">Trending News</p>
+                  </Link>        
+      </div>
       {/* Carousel - Hidden on larger screens, visible on small screens */}
       <div className="md:hidden">
         <Carousel fade indicators={false}> {/* controls={false} */}
