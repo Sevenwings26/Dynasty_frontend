@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 const HeroSliderSmall = () => {
   return (
     <div className="w-full items-center mx-auto">
-      <div className="w-full bg-black justify-center text-center text-2xl semibold">
-        <Link to={"/designers"} className="text-white ">
+      <div className="w-full bg-black justify-center text-center text-2xl semibold py-1">
+        <Link to={"/designers"} className="text-white">
                   <p className="m-1">Trending News</p>
                   </Link>        
       </div>

@@ -5,11 +5,12 @@ import CallDesigners from "../components/CallDesigners";
 import agbadaModel from "../assets/images/agbadaModel.jpg";
 import wedding from "../assets/images/wedding.png";
 import { Link } from "react-router-dom";
-import GalleryView from "../components/GalleryView";
+// import GalleryView from "../components/GalleryView";
 import Footer from "../components/Footer";
 import Subscribe from "../components/Subscribe";
 import BlogSection from "../components/BlogSection";
 import HeroSliderSmall from "../components/HeroSliderSmall";
+import DesignersCarousel from "../components/DesignersCarousel";
 
 const Home = () => {
   return (
@@ -102,12 +103,14 @@ const Home = () => {
 
       {/* Must read section */}
       <section>
-        <div className="border-t border-b border-gray-600 mt-2 mb-2">
+        {/* <div className="border-t border-b border-gray-600 mt-2 mb-2">
           <p className="font-semibold text-center mt-2">Must Read</p>
-        </div>
+        </div> */}
+        
         <div className="w-full md:container m-auto">
           <div className="">
-            <GalleryView />
+            {/* <GalleryView /> */}
+            <DesignersCarousel/>
           </div>
         </div>
       </section>

@@ -8,9 +8,16 @@ import DT1 from '../assets/images/designers/DHVEN TOUCH/DT1.jpg'
 import OD1 from '../assets/images/designers/ODESBABA COUTURE/OD1.jpg'
 import FB2 from '../assets/images/designers/Fabique Beauty/FB2.jpg'
 import AT6 from '../assets/images/designers/R.M Atelier/AT6.jpg'
+import S1 from '../assets/images/designers/sannah/S1.jpg'
+// import S1 from 
 
 
 const designers = [
+  {
+    link: '/designers/sannah-fashion-interview',
+    name: 'SANNAH FASHION HUB',
+    image: S1,
+  },
   {
     link: '/designers/rm-atelier',
     name: 'R.M. ATELIER',
@@ -35,10 +42,7 @@ const designers = [
 ];
 
 
-
-
 const Designers = () => {
-  
   return (
     <div>
       <Header/>
@@ -66,7 +70,6 @@ const Designers = () => {
     </div>
   < Footer/>
     </div>
-
   );
 
 

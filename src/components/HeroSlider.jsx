@@ -11,8 +11,11 @@ const HeroSlider = () => {
     <div className="flex items-center justify-center w-full flex-col border-0">
         <div className="w-full text-2xl semibold bg-black justify-center text-center text-white">
           <Link to={"/designers"} className="text-white ">
-          <p className="m-1">Trending News</p>
+          <p className="m-1">Trending</p>
           </Link>
+          {/* <Link to={"/designers"} className="text-white ">
+          <p className="m-1">Designer's interview</p>
+          </Link> */}
         </div>
 
       <Swiper

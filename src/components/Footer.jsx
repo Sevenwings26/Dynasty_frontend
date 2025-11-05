@@ -102,7 +102,7 @@ const Footer = () => {
                 Sponsors
               </Link>
               <br />
-              <Link to="" className="footer-links">
+              <Link to="/designers" className="footer-links">
                 Designers
               </Link>
             </div>

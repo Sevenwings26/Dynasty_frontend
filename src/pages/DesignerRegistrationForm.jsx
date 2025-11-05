@@ -44,7 +44,6 @@ const DesignerRegistrationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevents the form from refreshing the page
-
     AxiosInstance.post("api/applications/", formData)
       .then((response) => {
         Swal.fire({
