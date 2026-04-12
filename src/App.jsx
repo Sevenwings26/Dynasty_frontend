@@ -22,6 +22,8 @@ import DesignerDetail2 from "./pages/designers/DesignerDetail2";
 import DesignerDetail3 from "./pages/designers/DesignerDetail3";
 import DesignerDetail4 from "./pages/designers/DesignerDetail4";
 import DesignerInterview from "./pages/designers/DesignerInterview";
+import DesignerOryehglobal from "./pages/designers/DesignerOryehglobal";
+// import  from 
 
 function App() {
   return (
@@ -50,7 +52,9 @@ function App() {
         <Route path="/designers/dhven-touch" element={<DesignerDetail2/>} />
         <Route path="/designers/odesbaba-couture" element={<DesignerDetail3/>} />
         <Route path="/designers/rm-atelier" element={<DesignerDetail4/>} />
-        <Route path="/designers/sannah-fashion-interview" element={<DesignerInterview/>} />
+        <Route path="/designers/sannah-fashion" element={<DesignerInterview/>} />
+        <Route path="/designers/Oryehglobal" element={<DesignerOryehglobal/>} />
+
 
 
         {/* Protected Routes */}
