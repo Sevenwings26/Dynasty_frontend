@@ -3,92 +3,96 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import AxiosInstance from "../api/AxiosInstance";
-import "../App.css";
 import arcadedynasty from "../assets/logo/arcadedynasty.png";
-
 
 const PasswordResetRequest = () => {
   const navigate = useNavigate();
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
   const [showMessage, setShowMessage] = useState(false);
 
   const submission = (data) => {
-    AxiosInstance.post("api/password_reset/", { email: data.email })
+    return AxiosInstance.post("api/password_reset/", { email: data.email })
       .then(() => {
         setShowMessage(true);
         Swal.fire({
           icon: "info",
-          title: "Check your email",
-          text: "If the email exists, you will receive instructions to reset your password.",
-          confirmButtonText: "OK",
-          confirmButtonColor: "#34D399",
-        }).then(() => navigate("/"));
+          title: "Check Your Email",
+          text: "If your email exists, you will receive instructions to reset your password.",
+          confirmButtonColor: "#D4AF37",
+        }).then(() => navigate("/login"));
       })
       .catch(() => {
         Swal.fire({
           icon: "error",
           title: "Request Failed",
           text: "There was an error processing your request. Please try again.",
-          confirmButtonText: "Try Again",
           confirmButtonColor: "#EF4444",
         });
       });
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="w-full bg-white rounded-lg shadow-lg md:max-w-md">
-        <div className="p-3 space-y-4 md:space-y-6">
-          <Link to="/" className="flex flex-col items-center">
-            <img src={arcadedynasty} width={"120px"} alt="Arcade Dynasty" />
+    <div className="min-h-screen w-full bg-noir-900 flex items-center justify-center p-4 selection:bg-gold-400 selection:text-black">
+      <div className="w-full max-w-md bg-zinc-900/90 border border-zinc-800 rounded-3xl p-8 shadow-2xl backdrop-blur-xl">
+        <div className="flex flex-col items-center mb-8">
+          <Link to="/" className="mb-6">
+            <img src={arcadedynasty} alt="Arcade Dynasty" className="h-12 w-auto filter invert brightness-200" />
           </Link>
-          <h1 className="text-xl font-bold text-gray-900 text-center mb-6">
-            Request Password Reset
+          <span className="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold mb-1">
+            Account Recovery
+          </span>
+          <h1 className="text-2xl font-serif text-white font-bold">
+            Reset Password
           </h1>
-          {showMessage && (
-            <div className="bg-green-100 border border-green-400 text-green-700 p-3 rounded mb-4">
-              If your email exists, you will receive an email with instructions
-              for resetting the password.
-            </div>
-          )}
-          <form onSubmit={handleSubmit(submission)} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                {...register("email", { required: "Email is required" })}
-                className={`w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-gray-900 focus:ring-green-500 focus:border-green-500 ${
-                  errors.email ? "border-red-500" : ""
-                }`}
-                placeholder="Enter your email"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-            <div className="flex items-center justify-center">
-              <button
-                type="submit"
-                // className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-green-500"
-                className="w-full bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-red-900"
-              >
-                Request Password Reset
-              </button>
-            </div>
-          </form>
         </div>
+
+        {showMessage && (
+          <div className="bg-gold-400/10 border border-gold-400/30 text-gold-300 p-3.5 rounded-xl text-xs leading-relaxed mb-6">
+            If your email exists in our system, reset instructions have been dispatched to your inbox.
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit(submission)} className="space-y-5">
+          <div>
+            <label htmlFor="email" className="block text-xs uppercase tracking-wider text-zinc-300 mb-1 font-medium">
+              Registered Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              {...register("email", { required: "Email address is required" })}
+              className={`w-full bg-zinc-950/80 border ${errors.email ? 'border-red-500' : 'border-zinc-700/80'} text-white rounded-xl p-3 text-sm focus:outline-none focus:border-gold-400 transition`}
+              placeholder="name@example.com"
+            />
+            {errors.email && (
+              <p className="text-red-400 text-xs mt-1">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full mt-4 py-3.5 px-4 rounded-xl bg-gold-400 text-black font-semibold text-xs uppercase tracking-[0.2em] hover:bg-white transition duration-300 shadow-glow-gold disabled:opacity-50"
+          >
+            {isSubmitting ? "Sending Request..." : "Request Reset Link"}
+          </button>
+
+          <div className="pt-4 border-t border-zinc-800 text-center">
+            <Link to="/login" className="text-xs text-zinc-400 hover:text-white transition">
+              &larr; Back to Login
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
 export default PasswordResetRequest;
+

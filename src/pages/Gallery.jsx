@@ -1,73 +1,111 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-// import g2019 from "../assets/images/gallery/g2019.jpg";
-// import g2020 from "../assets/images/gallery/g2020.jpg";
-// import g2021 from "../assets/images/gallery/g2021.jpg";
-// import g2022 from "../assets/images/gallery/g2022.jpg";
-// import g2023 from "../assets/images/gallery/g2023.jpg";
-// import g2024 from "../assets/images/gallery/g2024.jpg";
 import bridal100 from "../assets/images/gallery/bridal100.jpg";
 import arcade44 from "../assets/images/gallery/arcade44.jpg";
 import urban1 from "../assets/images/gallery/urban1.jpg";
 import elAlmor from "../assets/images/gallery/elAlmor.jpg";
-
 import { Link } from "react-router-dom";
 
-const Gallery = () => {
-  const images = [
-    { title: 'Arcade Fashion Weekend', image: arcade44, link:"/gallery/arcade-fashion-weekend" },
-    { title: 'Bridal Fashion Show', image: bridal100, link:"/gallery/bridal-fashion-week" },
-    { title: 'Urban-Style Fashion Show', image: urban1, link:"/gallery/urban-style-fashion" },
-    { title: 'El-Almor', image: elAlmor, link:"/gallery/el-almor" },
-    // { title: '2022', image: g2022, link:"/gallery/g-2022" },
-    // { title: '2019', image: g2019, link:"/gallery/g-2019" },
-  ];
+const events = [
+  {
+    title: 'Arcade Fashion Weekend',
+    tag: 'FLAGSHIP SHOW',
+    image: arcade44,
+    link: "/gallery/arcade-fashion-weekend",
+    desc: "Highlights from our premier annual fashion week featuring seasoned supermodels and emerging runway talent."
+  },
+  {
+    title: 'Bridal Fashion Show',
+    tag: 'BRIDAL COUTURE',
+    image: bridal100,
+    link: "/gallery/bridal-fashion-week",
+    desc: "Exquisite bridal gowns, traditional attire fusion, and luxury bridal accessories."
+  },
+  {
+    title: 'Urban Style Fashion Show',
+    tag: 'STREETWEAR & FUSION',
+    image: urban1,
+    link: "/gallery/urban-style-fashion",
+    desc: "Progressive streetwear, edgy silhouettes, and contemporary culture on the catwalk."
+  },
+  {
+    title: 'El-Amor Fashion Tour',
+    tag: 'INTERNATIONAL TOUR',
+    image: elAlmor,
+    link: "/gallery/el-almor",
+    desc: "Global couture expressions, avant-garde design, and high-production runway showcases."
+  },
+];
 
+const Gallery = () => {
   return (
-    <div>
+    <div className="bg-noir-900 min-h-screen text-zinc-100 flex flex-col font-sans selection:bg-gold-400 selection:text-black">
       <Header />
-      <div className="flex flex-col items-center justify-center w-full m-auto text-center bg-black">
-        <div className="w-2/3 mt-4">
-          <h1 className="uppercase text-3xl font-bold text-white">
-            Key Moments from Past Arcade Fashion Week Seasons & Events
-          </h1>
+
+      {/* Header Banner */}
+      <section className="py-16 px-4 bg-zinc-950/80 border-b border-zinc-800/80 text-center">
+        <span className="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-2">
+          Runway Archives
+        </span>
+        <h1 className="text-4xl sm:text-5xl font-serif text-white font-bold tracking-tight max-w-4xl mx-auto">
+          Past Arcade Fashion Week Seasons & Events
+        </h1>
+        <p className="max-w-xl mx-auto text-zinc-400 text-sm font-light mt-3">
+          Explore iconic moments, designer collections, and backstage stories from our flagship events.
+        </p>
+
+        <div className="mt-6">
+          <Link
+            to="/apply-designer"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] px-6 py-3 rounded-full bg-gold-400 text-black font-semibold hover:bg-white transition duration-300"
+          >
+            <span>Apply as a Designer</span>
+            <span>&rarr;</span>
+          </Link>
         </div>
-        <div>
-        <Link
-        to="/apply-designer"
-        className="no-underline flex flex-col items-center justify-center m-3"
-      >
-        {/* Apply button with text animation and no underline */}
-        <div className="w-2/3 text-center bg-white text-black p-2 hover:bg-gray-800 transition duration-300 no-underline">
-          <span className="animate-pulse uppercase">Apply as a Designer</span>
-        </div>
-      </Link>
-        </div>
-        <div className="w-full py-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {images.map((item, index) => (
-              <Link to={item.link} 
-              // to={item.link} 
-              key={index}>
-                <div key={index}
-                  className="relative bg-cover m-auto bg-center w-44 h-44 md:w-72 md:h-72 rounded-full"
-                  style={{
-                    backgroundImage: `url(${item.image})`,
-                  }}
-                >
-                  <h2 className="absolute bottom-0 left-0 w-full text-center bg-black bg-opacity-50 text-white text-1xl md:text-2xl rounded-b-full">
-                     {item.title}
-                  </h2>
+      </section>
+
+      {/* Event Cards Grid */}
+      <section className="max-w-7xl mx-auto px-4 py-16 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {events.map((item, index) => (
+            <Link
+              to={item.link}
+              key={index}
+              className="group block relative rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl h-[420px] transition-all duration-500"
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-noir-900 via-noir-900/40 to-transparent group-hover:from-noir-900/90 transition-all duration-500" />
+              
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <span className="text-[10px] uppercase tracking-[0.25em] px-3 py-1 rounded-full bg-black/60 text-gold-400 border border-gold-400/30 font-medium w-fit">
+                  {item.tag}
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-serif text-white font-bold mt-3 group-hover:text-gold-300 transition">
+                  {item.title}
+                </h2>
+                <p className="text-xs text-zinc-300 font-light mt-2 line-clamp-2 max-w-lg">
+                  {item.desc}
+                </p>
+                <div className="mt-4 flex items-center text-xs text-gold-400 font-medium space-x-2">
+                  <span>View Event Gallery</span>
+                  <span>&rarr;</span>
                 </div>
-               </Link> 
-            ))}
-          </div>
+              </div>
+            </Link>
+          ))}
         </div>
-      </div>
+      </section>
+
       <Footer />
     </div>
   );
 };
 
 export default Gallery;
+

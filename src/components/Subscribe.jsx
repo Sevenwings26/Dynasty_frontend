@@ -1,48 +1,112 @@
-import React from "react";
-import { FaArrowRight } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaArrowRight } from "react-icons/fa6";
 import designerEllipse from "../assets/images/designerEllipse.jpg";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Subscribe = () => {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    Swal.fire({
+      icon: "success",
+      title: "Subscribed!",
+      text: "Thank you for joining the Arcade Dynasty Gazette.",
+      confirmButtonColor: "#D4AF37",
+    });
+    setFullName("");
+    setEmail("");
+  };
+
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center h-auto md:h-1/2 py-5">
-      <div className="bg-black w-full md:w-1/2 h-full py-3">
-        <form className="flex flex-col px-6 md:px-9 py-9 text-white text-base h-full">
-          <h1 className="py-1 text-xl">Stay Updated</h1>
-          <p className="mb-3 text-sm">Subscribe for updates on Arcade Dynasty</p>
-          <label htmlFor="full-name" className="text-white py-1">
-            Full name
-          </label>
-          <input
-            type="text"
-            name="full-name"
-            id="full-name"
-            className="bg-black border border-r-slate-100 h-8 p-2"
-          />
-          <label htmlFor="email" className="text-white mt-3 py-1">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="bg-black border border-r-slate-100 h-8 p-2"
-          />
-          <div className="flex flex-col items-center py-4">
-          <button type="submit" className="flex flex-row justify-between items-center btn-subscribe w-32 md:w-40 text-center bg-white text-black px-4 py-2 hover:bg-gray-800 transition duration-300 no-underline">
-            SIGN UP <FaArrowRight />
-          </button>
+    <div className="max-w-7xl mx-auto my-12 px-4">
+      <div className="relative rounded-3xl overflow-hidden bg-noir-800 border border-zinc-800 shadow-2xl flex flex-col md:flex-row">
+        
+        {/* Form Container */}
+        <div className="w-full md:w-1/2 p-8 sm:p-12 flex flex-col justify-center">
+          <span className="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">
+            Arcade Gazette
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-serif text-white mt-2">
+            Stay Connected
+          </h2>
+          <p className="text-zinc-400 text-sm mt-2 font-light leading-relaxed">
+            Receive exclusive invitations, runway announcements, and editorial fashion insights delivered directly to your inbox.
+          </p>
+
+          <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+            <div>
+              <label htmlFor="full-name" className="block text-xs uppercase tracking-wider text-zinc-300 mb-1">
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="full-name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="Jane Doe"
+                className="w-full bg-zinc-900/80 border border-zinc-700/70 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-400 transition"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-xs uppercase tracking-wider text-zinc-300 mb-1">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="jane@example.com"
+                className="w-full bg-zinc-900/80 border border-zinc-700/70 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-400 transition"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full mt-2 py-3.5 px-6 rounded-xl bg-gold-400 text-black font-semibold text-xs uppercase tracking-[0.2em] flex items-center justify-center space-x-2 hover:bg-white transition duration-300 shadow-glow-gold"
+            >
+              <span>Subscribe Now</span>
+              <FaArrowRight />
+            </button>
+          </form>
+        </div>
+
+        {/* Visual Media Container */}
+        <div className="hidden md:flex w-1/2 bg-zinc-950/60 p-12 flex-col justify-center items-center relative border-l border-zinc-800/80">
+          <div className="relative group cursor-pointer">
+            <img
+              src={designerEllipse}
+              alt="Designer Showcase"
+              className="rounded-full w-56 h-56 object-cover border-2 border-gold-400/40 shadow-glow-gold transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 rounded-full bg-gold-400/10 opacity-0 group-hover:opacity-100 transition duration-500" />
           </div>
-        </form>
-      </div>
-      <div className="hidden md:w-1/2 h-full md:flex flex-col justify-center items-center common-bg py-0">
-        <img src={designerEllipse} alt="Designer" className="rounded-full w-1/2 md:w-1/2 mt-5" />
-        <Link to="/" className="mt-5 flex items-center text-xl text-black mb-5 no-underline">
-          Designers <FaArrowRight className="ml-2"/>
-        </Link>
+
+          <div className="mt-8 text-center">
+            <span className="text-xs uppercase tracking-[0.2em] text-zinc-400 block mb-1">
+              Arcade Runway Portal
+            </span>
+            <Link
+              to="/designers"
+              className="inline-flex items-center space-x-2 text-sm font-serif text-gold-400 hover:text-white transition duration-300"
+            >
+              <span>Meet Featured Designers</span>
+              <FaArrowRight />
+            </Link>
+          </div>
+        </div>
+
       </div>
     </div>
   );
 };
 
 export default Subscribe;
+

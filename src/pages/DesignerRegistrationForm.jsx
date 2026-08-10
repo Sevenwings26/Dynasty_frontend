@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import AxiosInstance from "../api/AxiosInstance";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
 const DesignerRegistrationForm = () => {
@@ -16,17 +17,20 @@ const DesignerRegistrationForm = () => {
     state: "",
     city: "",
     postal_code: "",
-    application_type: [], // Array to store selected application types
-    designer_category: [], // Array to store selected designer categories
+    application_type: [],
+    designer_category: [],
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
       setFormData((prevState) => {
         const updatedValues = checked
-          ? [...prevState[name], value] // Add selection to the array
-          : prevState[name].filter((item) => item !== value); // Remove selection from the array
+          ? [...prevState[name], value]
+          : prevState[name].filter((item) => item !== value);
         return {
           ...prevState,
           [name]: updatedValues,
@@ -40,365 +44,327 @@ const DesignerRegistrationForm = () => {
     }
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents the form from refreshing the page
+    e.preventDefault();
+    setIsSubmitting(true);
+
     AxiosInstance.post("api/applications/", formData)
       .then((response) => {
+        setIsSubmitting(false);
         Swal.fire({
-          title: "Success!",
-          text: "Application submitted successfully. You would have received a confirmatory mail.\n Please do not re-apply.",
+          title: "Application Received!",
+          text: "Your application has been successfully submitted. Check your email for confirmation.",
           icon: "success",
-          confirmButtonText: "OK",
+          confirmButtonColor: "#D4AF37",
         }).then(() => {
-          navigate("/"); // Navigate after successful alert
+          navigate("/");
         });
-        console.log("Application submitted successfully:", response.data);
       })
       .catch((error) => {
+        setIsSubmitting(false);
         Swal.fire({
-          title: "Error!",
-          text: "There was an error submitting the application.",
+          title: "Submission Error",
+          text: "There was an error submitting your application. Please check your information.",
           icon: "error",
-          confirmButtonText: "OK",
+          confirmButtonColor: "#EF4444",
         });
-        console.error("There was an error submitting the application:", error);
+        console.error("Submission error:", error);
       });
   };
 
+  const appTypes = [
+    { id: "exhibition", label: "Exhibition Booth" },
+    { id: "runway", label: "Runway Showcase" },
+    { id: "both", label: "Exhibition & Runway Both" },
+  ];
+
+  const categories = [
+    "Fashion Designer",
+    "Exclusive Designer",
+    "Stylist / Wardrobe Curator",
+    "Accessory & Jewelry Designer",
+    "Emerging Designer",
+    "Established Couture Brand",
+  ];
+
   return (
-    <div>
+    <div className="bg-noir-900 min-h-screen text-zinc-100 flex flex-col font-sans selection:bg-gold-400 selection:text-black">
       <Header />
-      <div className="container w-full flex flex-col items-center justify-center m-auto mt-4">
-        <h1 className="text-2xl font-bold">Designer Registration Form</h1>
-        <h1 className="text-xl font-bold">
-          Arcade Dynasty Designer and Exhibitor registration form
+
+      {/* Header Banner */}
+      <section className="py-16 px-4 bg-zinc-950/80 border-b border-zinc-800/80 text-center">
+        <span className="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-2">
+          Runway Application
+        </span>
+        <h1 className="text-3xl sm:text-5xl font-serif text-white font-bold tracking-tight">
+          Designer & Exhibitor Registration
         </h1>
-        <p className="text-center">
-          This registration is solely for Designers / Exhibitors who wish to
-          participate in Arcade Dynasty Fashion. General Attendees are not
-          qualified or allowed to apply.
+        <p className="max-w-2xl mx-auto text-zinc-400 text-sm font-light mt-3 leading-relaxed">
+          Official application portal for fashion designers, stylists, and exhibitors participating in Arcade Dynasty fashion showcases.
         </p>
-      </div>
+      </section>
 
-      <form
-        onSubmit={handleSubmit}
-        className="container mt-4 w-full mx-auto p-6 bg-white rounded-lg shadow-md"
-        style={{ fontFamily: "Libre Bodoni" }}
-      >
-        {/* Form Fields */}
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="brand_name"
-          >
-            {" "}
-            Brand Name
-          </label>
-          <input
-            id="brand_name"
-            name="brand_name"
-            type="text"
-            value={formData.brand_name}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-
-        {/* Phone Number */}
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="phone_number"
-          >
-            {" "}
-            Phone Number
-          </label>
-          <input
-            id="phone_number"
-            name="phone_number"
-            type="text"
-            value={formData.phone_number}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
-            {" "}
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="text"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="instagram_id"
-          >
-            {" "}
-            Instagram_ID
-          </label>
-          <input
-            id="instagram_id"
-            name="instagram_id"
-            type="text"
-            value={formData.instagram_id}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="tiktok_id"
-          >
-            {" "}
-            Tiktok_ID
-          </label>
-          <input
-            id="tiktok_id"
-            name="tiktok_id"
-            type="text"
-            value={formData.tiktok_id}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="facebook_id"
-          >
-            {" "}
-            Facebook_ID
-          </label>
-          <input
-            id="facebook_id"
-            name="facebook_id"
-            type="text"
-            value={formData.facebook_id}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-
-        {/* Address Details */}
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="country"
-          >
-            Country
-          </label>
-          <input
-            id="country"
-            name="country"
-            type="text"
-            value={formData.country}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-
-        <div className="md:flex md:flex-row justify-between">
-          <div className="mb-4 md:w-1/2 md:px-2">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="state"
-            >
-              State
-            </label>
-            <input
-              id="state"
-              name="state"
-              type="text"
-              value={formData.state}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-          <div className="mb-4 md:w-1/2 md:px-2">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="city"
-            >
-              {" "}
-              City
-            </label>
-            <input
-              id="city"
-              name="city"
-              type="text"
-              value={formData.city}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="postal_code"
-          >
-            Postal Code
-          </label>
-          <input
-            id="postal_code"
-            name="postal_code"
-            type="text"
-            value={formData.postal_code}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-
-        {/* Application Type */}
-        <div className="mb-4">
-          {" "}
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            {" "}
-            Application Type
-          </label>
-          <label key="exhibition">
-            <input
-              type="checkbox"
-              name="application_type"
-              value="exhibition"
-              onChange={handleChange}
-            />{" "}
-            Exhibition
-          </label>{" "}
-          <br />
-          <label key="runway">
-            <input
-              type="checkbox"
-              name="application_type"
-              value="runway"
-              onChange={handleChange}
-            />{" "}
-            Runway
-          </label>
-          <br />
-          <label key="both">
-            {" "}
-            <input
-              type="checkbox"
-              name="application_type"
-              value="both"
-              onChange={handleChange}
-            />{" "}
-            Both
-          </label>
-        </div>
-
-        {/* Designer Category */}
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Designer Category
-          </label>
-          <label key="Fashion Designer">
-            <input
-              type="checkbox"
-              name="designer_category"
-              value="Fashion Designer"
-              onChange={handleChange}
-            />{" "}
-            Fashion Designer
-          </label>
-          <br />
-          <label key="Exclusive Designer">
-            <input
-              type="checkbox"
-              name="designer_category"
-              value="Exclusive Designer"
-              onChange={handleChange}
-            />{" "}
-            Exclusive Designer
-          </label>{" "}
-          <br />
-          <label key="Stylists">
-            <input
-              type="checkbox"
-              name="designer_category"
-              value="Stylists"
-              onChange={handleChange}
-            />{" "}
-            Stylists
-          </label>
-          <br />
-          <label key="Accessory Designer">
-            <input
-              type="checkbox"
-              name="designer_category"
-              value="Accessory Designer"
-              onChange={handleChange}
-            />{" "}
-            Accessory Designer
-          </label>
-          <br />
-          <label key="Emerging Designer">
-            <input
-              type="checkbox"
-              name="designer_category"
-              value="Emerging Designer"
-              onChange={handleChange}
-            />{" "}
-            Emerging Designer
-          </label>
-          <br />
-          <label key="Established Designer">
-            <input
-              type="checkbox"
-              name="designer_category"
-              value="Established Designer"
-              onChange={handleChange}
-            />{" "}
-            Established Designer
-          </label>
-        </div>
-
-        <button
-          type="submit"
-          className="w-40 p-2 text-xl bg-gray-800 text-white rounded-md"
+      {/* Form Container */}
+      <main className="max-w-4xl mx-auto px-4 py-16 w-full flex-1">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-zinc-900/90 border border-zinc-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-10"
         >
-          Submit
-        </button>
-      </form>
-      <div className="w-full bg-black mt-20">
-        <div className="container flex flex-row items-center justify-between text-white">
-          <p>
-            &copy;2024. Arcade Dynasty. All rights reserved. We may earn a
-            portion of sales from products purchased through our site as part of
-            our affiliate partnerships with retailers. The material on the site
-            may not be reproduced, distributed, or otherwise used, except with
-            prior written permission.
-          </p>
-        </div>
-      </div>
+          {/* Brand & Contact Section */}
+          <div className="space-y-6">
+            <h2 className="text-xl font-serif text-white font-bold border-b border-zinc-800 pb-3 flex items-center justify-between">
+              <span>01. Brand & Contact Information</span>
+              <span className="text-xs text-gold-400 font-sans tracking-widest uppercase">Required</span>
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="brand_name">
+                  Brand Name *
+                </label>
+                <input
+                  id="brand_name"
+                  name="brand_name"
+                  type="text"
+                  value={formData.brand_name}
+                  onChange={handleChange}
+                  placeholder="e.g. Atelier Dynasty"
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="email">
+                  Official Email *
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="designer@brand.com"
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="phone_number">
+                  Phone Number (WhatsApp) *
+                </label>
+                <input
+                  id="phone_number"
+                  name="phone_number"
+                  type="tel"
+                  value={formData.phone_number}
+                  onChange={handleChange}
+                  placeholder="+234..."
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="instagram_id">
+                  Instagram Handle *
+                </label>
+                <input
+                  id="instagram_id"
+                  name="instagram_id"
+                  type="text"
+                  value={formData.instagram_id}
+                  onChange={handleChange}
+                  placeholder="@brand_instagram"
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="tiktok_id">
+                  TikTok Handle
+                </label>
+                <input
+                  id="tiktok_id"
+                  name="tiktok_id"
+                  type="text"
+                  value={formData.tiktok_id}
+                  onChange={handleChange}
+                  placeholder="@brand_tiktok"
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="facebook_id">
+                  Facebook Page / ID
+                </label>
+                <input
+                  id="facebook_id"
+                  name="facebook_id"
+                  type="text"
+                  value={formData.facebook_id}
+                  onChange={handleChange}
+                  placeholder="facebook.com/brand"
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Location Section */}
+          <div className="space-y-6 pt-4">
+            <h2 className="text-xl font-serif text-white font-bold border-b border-zinc-800 pb-3">
+              02. Studio Location
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="country">
+                  Country *
+                </label>
+                <input
+                  id="country"
+                  name="country"
+                  type="text"
+                  value={formData.country}
+                  onChange={handleChange}
+                  placeholder="Nigeria"
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="state">
+                  State / Province *
+                </label>
+                <input
+                  id="state"
+                  name="state"
+                  type="text"
+                  value={formData.state}
+                  onChange={handleChange}
+                  placeholder="Lagos"
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="city">
+                  City *
+                </label>
+                <input
+                  id="city"
+                  name="city"
+                  type="text"
+                  value={formData.city}
+                  onChange={handleChange}
+                  placeholder="Ikeja"
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-zinc-300 mb-1.5 font-medium" htmlFor="postal_code">
+                  Postal Code
+                </label>
+                <input
+                  id="postal_code"
+                  name="postal_code"
+                  type="text"
+                  value={formData.postal_code}
+                  onChange={handleChange}
+                  placeholder="100001"
+                  className="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-400 transition"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Application Category */}
+          <div className="space-y-6 pt-4">
+            <h2 className="text-xl font-serif text-white font-bold border-b border-zinc-800 pb-3">
+              03. Showcase & Category Selection
+            </h2>
+
+            <div>
+              <label className="block text-xs uppercase tracking-wider text-gold-400 mb-3 font-semibold">
+                Application Type
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {appTypes.map((type) => (
+                  <label
+                    key={type.id}
+                    className={`flex items-center space-x-3 p-4 rounded-xl border cursor-pointer transition ${
+                      formData.application_type.includes(type.id)
+                        ? "bg-gold-400/15 border-gold-400 text-white"
+                        : "bg-zinc-950/60 border-zinc-800 text-zinc-300 hover:border-zinc-700"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      name="application_type"
+                      value={type.id}
+                      checked={formData.application_type.includes(type.id)}
+                      onChange={handleChange}
+                      className="accent-gold-400 h-4 w-4 rounded"
+                    />
+                    <span className="text-xs font-medium">{type.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <label className="block text-xs uppercase tracking-wider text-gold-400 mb-3 font-semibold">
+                Designer Category
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {categories.map((cat) => (
+                  <label
+                    key={cat}
+                    className={`flex items-center space-x-3 p-3.5 rounded-xl border cursor-pointer transition ${
+                      formData.designer_category.includes(cat)
+                        ? "bg-gold-400/15 border-gold-400 text-white"
+                        : "bg-zinc-950/60 border-zinc-800 text-zinc-300 hover:border-zinc-700"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      name="designer_category"
+                      value={cat}
+                      checked={formData.designer_category.includes(cat)}
+                      onChange={handleChange}
+                      className="accent-gold-400 h-4 w-4 rounded"
+                    />
+                    <span className="text-xs font-medium">{cat}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-6 text-center">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full sm:w-80 py-4 px-8 rounded-full bg-gold-400 text-black font-semibold text-xs uppercase tracking-[0.2em] hover:bg-white transition duration-300 shadow-glow-gold disabled:opacity-50"
+            >
+              {isSubmitting ? "Submitting Application..." : "Submit Designer Application"}
+            </button>
+          </div>
+        </form>
+      </main>
+
+      <Footer />
     </div>
   );
 };
 
 export default DesignerRegistrationForm;
+

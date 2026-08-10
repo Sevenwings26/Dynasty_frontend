@@ -6,41 +6,48 @@ import carousel5 from "../assets/heroslides/carousel5.jpg";
 import carousel6 from "../assets/heroslides/carousel6.jpg";
 import carousel7 from "../assets/heroslides/carousel7.jpg";
 
-
 export const ServiceData = [
   {
-    title: "Development",
-    content: "L",
+    title: "Haute Couture 2025",
+    subtitle: "Runway Highlights & Designer Collections",
+    tag: "RUNWAY",
     backgroundImage: carousel1,
   },
   {
-    title: "Branding",
-    content: "",
+    title: "Bridal Fashion Showcase",
+    subtitle: "Timeless Elegance & Contemporary Glamour",
+    tag: "BRIDAL",
     backgroundImage: carousel2,
   },
   {
-    title: "Design",
-    content: "",
+    title: "Urban Style Culture",
+    subtitle: "Streetwear Fusion & Emerging Trends",
+    tag: "STREETWEAR",
     backgroundImage: carousel3,
   },
   {
-    title: "Seo",
-    content: "",
+    title: "Atelier Spotlight",
+    subtitle: "Master Craftsmanship & African Heritage",
+    tag: "ATELIER",
     backgroundImage: carousel4,
   },
   {
-    title: "Management",
-    content: "",
+    title: "Estilo Luz Collection",
+    subtitle: "Avant-Garde Silhouettes & Creative Expression",
+    tag: "ESTILO LUZ",
     backgroundImage: carousel5,
   },
   {
-    title: "Production",
-    content: "",
+    title: "Arcade Fashion Weekend",
+    subtitle: "Season Highlights & Exclusive Previews",
+    tag: "HIGHLIGHTS",
     backgroundImage: carousel6,
   },
   {
-    title: "Production",
-    content: "",
+    title: "El-Amor Tour",
+    subtitle: "Global Couture Expressions",
+    tag: "COUTURE",
     backgroundImage: carousel7,
   },
 ];
+

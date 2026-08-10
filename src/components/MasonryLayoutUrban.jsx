@@ -80,25 +80,26 @@ const MasonryLayoutUrban = () => {
       {/* Modal for the zoom-out effect */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-gray-100 bg-opacity-80 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300"
           onClick={closeModal} // Close modal when clicking outside
         >
           <div 
-            className="relative bg-white p-4 rounded-lg shadow-lg max-w-screen-lg max-h-screen"
+            className="relative bg-zinc-950 p-2 rounded-2xl border border-zinc-800 shadow-2xl max-w-screen-lg max-h-[90vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking the image
           >
             {/* Close Button */}
             <button 
-              className="absolute top-2 right-2 text-white bg-black opacity-35 p-2 rounded-full hover:bg-red-500"
+              className="absolute top-4 right-4 text-white bg-zinc-900/80 hover:bg-zinc-800 hover:text-red-400 p-2 rounded-full transition duration-300 z-10 border border-zinc-700/50"
               onClick={closeModal}
+              aria-label="Close image modal"
             >
-              <AiOutlineClose size={24} />
+              <AiOutlineClose size={20} />
             </button>
 
             <img 
               src={selectedImage}
-              alt="Zoomed out"
-              className="max-w-full max-h-[80vh] w-auto h-auto transition-transform duration-300 transform scale-95 hover:scale-100" 
+              alt="Zoomed view"
+              className="max-w-full max-h-[80vh] w-auto h-auto object-contain rounded-xl transition-transform duration-300" 
             />
           </div>
         </div>
